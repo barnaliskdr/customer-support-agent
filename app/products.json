@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Wireless Bluetooth Headphones",
+    "category": "electronics",
+    "price": 2499.0,
+    "portion": "1 unit",
+    "image": "https://example.com/images/headphones.jpg",
+    "description": "Over-ear wireless Bluetooth headphones with noise cancellation and 20-hour battery life."
+  },
+  {
+    "name": "Smartphone 6.5-inch Display",
+    "category": "electronics",
+    "price": 19999.0,
+    "portion": "1 unit",
+    "image": "https://example.com/images/smartphone.jpg",
+    "description": "6.5-inch Full HD+ smartphone with 128GB storage, 48MP dual camera, and fast charging."
+  },
+  {
+    "name": "Laptop 15.6-inch Core i5",
+    "category": "electronics",
+    "price": 58999.0,
+    "portion": "1 unit",
+    "image": "https://example.com/images/laptop.jpg",
+    "description": "Lightweight laptop with Intel Core i5 processor, 8GB RAM, and 512GB SSD."
+  },
+  {
+    "name": "Smartwatch Pro",
+    "category": "electronics",
+    "price": 7999.0,
+    "portion": "1 unit",
+    "image": "https://example.com/images/smartwatch.jpg",
+    "description": "Stylish smartwatch with fitness tracking, heart rate monitor, and customizable watch faces."
+  },
+  {
+    "name": "Bluetooth Speaker Mini",
+    "category": "electronics",
+    "price": 1799.0,
+    "portion": "1 unit",
+    "image": "https://example.com/images/speaker.jpg",
+    "description": "Compact Bluetooth speaker with powerful bass and splash resistance."
+  },
+  {
+    "name": "Men's Casual T-Shirt",
+    "category": "fashion",
+    "price": 599.0,
+    "portion": "1 piece",
+    "image": "https://example.com/images/mens_tshirt.jpg",
+    "description": "Cotton round-neck T-shirt for men, available in multiple colors and sizes."
+  },
+  {
+    "name": "Women's Floral Dress",
+    "category": "fashion",
+    "price": 1499.0,
+    "portion": "1 piece",
+    "image": "https://example.com/images/womens_dress.jpg",
+    "description": "Knee-length floral printed dress made from soft rayon fabric, perfect for casual wear."
+  },
+  {
+    "name": "Men's Slim Fit Jeans",
+    "category": "fashion",
+    "price": 1799.0,
+    "portion": "1 piece",
+    "image": "https://example.com/images/mens_jeans.jpg",
+    "description": "Stylish slim-fit stretchable jeans for men with five-pocket design."
+  },
+  {
+    "name": "Women's Handbag",
+    "category": "fashion",
+    "price": 2299.0,
+    "portion": "1 unit",
+    "image": "https://example.com/images/handbag.jpg",
+    "description": "Trendy leather handbag with adjustable strap and spacious compartments."
+  },
+  {
+    "name": "Unisex Sneakers",
+    "category": "fashion",
+    "price": 2499.0,
+    "portion": "1 pair",
+    "image": "https://example.com/images/sneakers.jpg",
+    "description": "Lightweight sneakers suitable for casual and sportswear with breathable mesh upper."
+  }
+]

@@ -1,0 +1,38 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.egg
+*.egg-info/
+*.log
+
+# --- Virtual Environment ---
+venv/
+ENV/
+env/
+.venv/
+
+# --- IDE & Editor Files ---
+.vscode/
+.idea/
+
+# --- OS-specific files ---
+.DS_Store
+Thumbs.db
+
+# --- Environment variables or secrets ---
+.env
+
+# --- Compiled or temporary files ---
+*.tmp
+*.bak
+*.swp
+
+# --- Optional ---
+# If you have test coverage reports or build artifacts:
+htmlcov/
+dist/
+build/
+*.spec

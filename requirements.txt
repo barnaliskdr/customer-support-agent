@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+pymongo
+pydantic
+motor
+bcrypt
+passlib
+python-jose[cryptography]
+# pip install bcrypt==3.2.2 passlib==1.7.4
+# pip install "python-jose[cryptography]"
+# python -m pip install "pymongo[srv]"  
+# pip install dotenv
+# pip install google-generativeai
