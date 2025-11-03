@@ -2,7 +2,7 @@
 from pydantic import BaseModel, Field
 from typing import List, Optional
 from utils.objectid_util import PyObjectId
-from .product_model import Product  # relative import if models in same folder
+from models.product_model import Product  # relative import if models in same folder
 
 class CartItem(BaseModel):
     product: Product
@@ -14,6 +14,6 @@ class Cart(BaseModel):
     items: List[CartItem] = []
     total_price: Optional[float] = 0.0
 
-    class Config:
-        allow_population_by_field_name = True
-        json_encoders = {PyObjectId: str}
+class Config:
+    allow_population_by_field_name = True
+    json_encoders = {PyObjectId: str}

@@ -24,3 +24,15 @@ async def get_product_by_name(prod_name: str):
     if not products:
         raise HTTPException(status_code=404, detail="No products found")
     return {"message": "List of products", "data": products}
+
+
+@router.get("/category/{prod_category}")
+async def get_product_by_category(prod_category: str):
+    print("prod_category", prod_category)
+    products = product_service.get_product_by_category(prod_category)
+
+    if not products:
+        raise HTTPException(status_code=404, detail="No products found")
+    return {"message": "List of products", "data": products}
+
+

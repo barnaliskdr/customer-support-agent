@@ -20,11 +20,16 @@ class ProductAgent:
         products = product_service.get_all_products()
         return [self._serialize_product(p) for p in products]
 
-    def search_product(self, query: str) -> List[Dict[str, Any]]:
+    def search_product(self, product_name: str) -> List[Dict[str, Any]]:
         """Search products by partial name match."""
-        products = product_service.get_product_by_name(query)
+        products = product_service.get_product_by_name(product_name)
         return [self._serialize_product(p.dict() if isinstance(p, Product) else p) for p in products]
 
+    def search_product_by_category(self, category: str) -> List[Dict[str, Any]]:
+        """Search products by category."""
+        products = product_service.get_product_by_category(category)
+        return [self._serialize_product(p.dict() if isinstance(p, Product) else p) for p in products]
+    
     def _serialize_product(self, product: Dict[str, Any]) -> Dict[str, Any]:
         product["_id"] = str(product.get("_id", ""))
         return product
