@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Query, Body
 from app.routes import product_routes
 from app.routes import user_routes
+import app.routes.cart_routes as cart_router
 from app.agents.supervisor import SupervisorLLM
 
 
@@ -24,6 +25,7 @@ async def chat_with_bot_post(payload: dict = Body(...)):
 
 app.include_router(product_routes.router)
 app.include_router(user_routes.router)
+app.include_router(cart_router.router)
 
 # app.include_router(user_routes.router)
 
