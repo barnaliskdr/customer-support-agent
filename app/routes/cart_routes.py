@@ -54,3 +54,15 @@ def add_to_cart(request: CartRequest):
         raise HTTPException(status_code=404, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
+    
+
+
+@router.post("/remove")
+def remove_from_cart(request: CartRequest):
+    try:
+        cart = cart_service.remove_from_cart(request.user_id, request.product_id, request.quantity)
+        return {"message": "Item removed from cart successfully", "cart": jsonable_encoder(cart)}
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error: {str(e)}")

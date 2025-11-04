@@ -127,3 +127,54 @@ def create_or_update_cart(user_id: str, product_id: str, quantity: int):
 
     # ✅ Return updated cart as a Pydantic model
     return Cart(**existing_cart)
+
+
+
+
+def remove_from_cart(user_id: str, product_id: str, quantity: int):
+    """
+    Remove or decrement a product from the user's cart.
+    - If quantity > 0: decreases the product quantity.
+    - If quantity <= 0 or resulting quantity <= 0: removes the product from cart.
+    - If the cart becomes empty, it deletes the cart document.
+    """
+
+    # ✅ Fetch the user's existing cart
+    existing_cart = cart_collection.find_one({"user_id": ObjectId(user_id)})
+    if not existing_cart:
+        raise ValueError("Cart not found for this user.")
+
+    # ✅ Find the product inside the cart
+    product_found = False
+    for item in existing_cart["items"]:
+        if str(item["product"]["_id"]) == str(product_id):
+            product_found = True
+            item["quantity"] -= quantity
+            # If the item’s quantity drops to zero or below, remove it
+            if item["quantity"] <= 0:
+                existing_cart["items"].remove(item)
+            break
+
+    if not product_found:
+        raise ValueError(f"Product with id {product_id} not found in cart.")
+
+    # ✅ If cart is now empty, delete the whole document
+    if not existing_cart["items"]:
+        cart_collection.delete_one({"_id": existing_cart["_id"]})
+        return {"message": "Cart is now empty and has been deleted."}
+
+    # ✅ Recalculate total price
+    total_price = sum(
+        item["product"]["price"] * item["quantity"]
+        for item in existing_cart["items"]
+    )
+    existing_cart["total_price"] = total_price
+
+    # ✅ Update the cart in MongoDB
+    cart_collection.update_one(
+        {"_id": existing_cart["_id"]},
+        {"$set": {"items": existing_cart["items"], "total_price": total_price}}
+    )
+
+    # ✅ Return updated cart as Pydantic model
+    return Cart(**existing_cart)
