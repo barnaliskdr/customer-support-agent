@@ -42,3 +42,30 @@ class CartAgent:
             }
         except Exception as e:
             return {"status": "error", "message": str(e)}
+        
+
+    def fetch_cart_details(self, user_id: str):
+        """
+        Fetch cart details for a specific user.
+        Equivalent to the /getCartDetails/{user_id} route.
+        """
+        try:
+            cart = cart_service.fetch_cart_details(user_id)
+
+            # If service returned a Pydantic Cart model, serialize it
+            if hasattr(cart, "dict"):
+                cart_data = cart.dict(by_alias=True)
+            else:
+                cart_data = cart
+
+            return {
+                "status": "success",
+                "message": "Cart details fetched successfully.",
+                "cart": cart_data
+            }
+
+        except ValueError as e:
+            return {"status": "error", "message": str(e), "code": 404}
+
+        except Exception as e:
+            return {"status": "error", "message": f"Unexpected error: {str(e)}", "code": 500}

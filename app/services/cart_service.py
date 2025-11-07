@@ -180,18 +180,20 @@ def remove_from_cart(user_id: str, product_id: str, quantity: int):
     return Cart(**existing_cart)
 
 
-    def fetch_cart_details(user_id: str):
-        """
-        Fetch the cart details for a given user.
-        - Returns the user's current cart as a Pydantic model.
-        - If no cart exists, returns a friendly message.
-        """
+def fetch_cart_details(user_id: str):
+    print("Fetching cart details for user_id:", user_id)
 
-        # ✅ Find the cart document for the user
-        existing_cart = cart_collection.find_one({"user_id": ObjectId(user_id)})
+    """
+    Fetch the cart details for a given user.
+    - Returns the user's current cart as a Pydantic model.
+    - If no cart exists, returns a friendly message.
+    """
 
-        if not existing_cart:
-            return {"message": "No active cart found for this user."}
+    # ✅ Find the cart document for the user
+    existing_cart = cart_collection.find_one({"user_id": ObjectId(user_id)})
 
-        # ✅ Convert MongoDB document to Cart Pydantic model
-        return Cart(**existing_cart)
+    if not existing_cart:
+        return {"message": "No active cart found for this user."}
+
+    # ✅ Convert MongoDB document to Cart Pydantic model
+    return Cart(**existing_cart)

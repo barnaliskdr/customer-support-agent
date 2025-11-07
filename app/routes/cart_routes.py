@@ -6,44 +6,6 @@ from fastapi.encoders import jsonable_encoder
 
 router = APIRouter(prefix="/cart", tags=["Products"])  # 👈 cleaner URL prefix
 
-# @router.post("/add")
-# def add_to_cart(user_id: str, product_id: str, quantity: int):
-#     try:
-#         cart = cart_service.create_or_update_cart(user_id, product_id, quantity)
-#         return {"message": "Item added to cart successfully", "cart": cart.dict(by_alias=True)}
-#     except ValueError as e:
-#         raise HTTPException(status_code=404, detail=str(e))
-#     except Exception as e:
-#         raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
-
-
-# @router.post("/add")
-# def add_to_cart(request: CartRequest):
-#     print("Cart after addition:", request)
-#     try:
-#         cart = cart_service.create_or_update_cart(
-#             request.user_id, request.product_id, request.quantity
-#         )
-        
-#         return {"message": "Item added to cart successfully", "cart": cart.dict(by_alias=True)}
-#     except ValueError as e:
-#         raise HTTPException(status_code=404, detail=str(e))
-#     except Exception as e:
-#         raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
-
-
-# @router.post("/add")
-# def add_to_cart(request: CartRequest):
-#     try:
-#         cart_data = cart_service.create_or_update_cart(request.user_id, request.product_id, request.quantity)
-#         cart = Cart(cart_data)  # Convert MongoDB dict → Pydantic model
-#         return {"message": "Item added to cart successfully", "cart": jsonable_encoder(cart)}
-#     except ValueError as e:
-#         raise HTTPException(status_code=404, detail=str(e))
-#     except Exception as e:
-#         raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
-
-
 @router.post("/add")
 def add_to_cart(request: CartRequest):
     try:
@@ -54,7 +16,6 @@ def add_to_cart(request: CartRequest):
         raise HTTPException(status_code=404, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
-    
 
 
 @router.post("/remove")
@@ -66,3 +27,19 @@ def remove_from_cart(request: CartRequest):
         raise HTTPException(status_code=404, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
+
+
+@router.get("/getCartDetails/{user_id}")
+def fetch_cart_details(user_id: str):
+    try:
+        cart = cart_service.fetch_cart_details(user_id)
+        return {"message": "Cart details fetched successfully", "cart": jsonable_encoder(cart)}
+    except ValueError as e:
+        print("ValueError:", str(e))    
+        raise HTTPException(status_code=404, detail=str(e))
+    except Exception as e:
+        print("Exception :", str(e))    
+        raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
+    
+
+

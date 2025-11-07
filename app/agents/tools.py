@@ -88,5 +88,22 @@ tools = [
                 "required": ["user_id", "product_id", "quantity"]
             }
         }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "fetch_cart_details",
+            "description": "Fetch the current cart details for a given user ID.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "user_id": {
+                        "type": "string",
+                        "description": "The unique ID of the user whose cart should be fetched."
+                    }
+                },
+                "required": ["user_id"]
+            }
+        }
     }
 ]
